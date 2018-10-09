@@ -54,3 +54,4 @@ Downloaded files will be in `download` folder in this directory.
 9 October 2018
 - extract from [Foxy Flavored Cookie](http://www.pobrepucho.thecomicseries.com) comic
 - extract from [Housepets!](http://www.housepetscomic.com) comic
+- Initial commit and bunch of bug~~fix~~
