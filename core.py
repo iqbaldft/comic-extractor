@@ -18,7 +18,7 @@ class ComicScrapper:
         :return: string page contents
         """
         page = requests.get(self.url)
-        return page.content if page.status_code == 200 else None
+        return page.text if page.status_code == 200 else None
 
     def download_image(self, image_url):
         """Download image from url
