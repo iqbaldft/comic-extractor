@@ -1,5 +1,6 @@
 #! .venv/bin/python3
 
+import re
 from bs4 import BeautifulSoup
 
 from core import ComicScrapper
@@ -37,6 +38,7 @@ class PobrePucho(ComicScrapper):
             soup.find('h2', attrs={'class': 'heading'})
             .string
         )
+        image_name = re.sub('[^A-Za-z0-9]+', ' ', image_name)
         return '{}.{}'.format(image_name, image_extension)
 
 
