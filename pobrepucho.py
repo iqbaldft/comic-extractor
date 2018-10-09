@@ -6,16 +6,16 @@ from core import ComicScrapper
 
 
 class PobrePucho(ComicScrapper):
-    def get_comic_img_url(self, html_page):
-        soup = BeautifulSoup(html_page, 'html.parser')
+    def get_comic_img_url(self):
+        soup = BeautifulSoup(self.html_page, 'html.parser')
         comic_url = (
                 soup.find('img', attrs={'id': 'comicimage'})
                 .get('src')
             )
         return comic_url
 
-    def get_next_page(self, html_page):
-        soup = BeautifulSoup(html_page, 'html.parser')
+    def get_next_page(self):
+        soup = BeautifulSoup(self.html_page, 'html.parser')
         next_page = (
                 soup.find('div', attrs={'id': 'comicnav'})
                 .find('a', attrs={'rel': 'next'})
@@ -26,8 +26,8 @@ class PobrePucho(ComicScrapper):
         else:
             return None
 
-    def get_image_name(self, html_page):
-        soup = BeautifulSoup(html_page, 'html.parser')
+    def get_image_name(self):
+        soup = BeautifulSoup(self.html_page, 'html.parser')
         image_extension = (
                 soup.find('img', attrs={'id': 'comicimage'})
                 .get('src')

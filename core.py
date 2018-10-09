@@ -14,6 +14,7 @@ class ComicScrapper:
         self.index = 1
         self.record_file = record_file
         self.image_name = None
+        self.html_page = None
 
     def get_page(self):
         """Get page contents from a url
@@ -22,8 +23,8 @@ class ComicScrapper:
         page = requests.get(self.url)
         return page.text if page.status_code == 200 else None
 
-    def get_image_name(self, html_page):
-        return
+    def get_image_name(self):
+        return None
 
     def download_image(self, image_url):
         """Download image from url
@@ -51,12 +52,12 @@ class ComicScrapper:
                 }
         return result
 
-    def get_next_page(self, html_page):
+    def get_next_page(self):
         msg = ("Implement this method !\n"
                "Make sure it return string url of next page, or None")
         raise NotImplementedError(msg)
 
-    def get_comic_img_url(self, html_page):
+    def get_comic_img_url(self):
         msg = ("Implement this method !\n"
                "Make sure it return string url of comic image")
         raise NotImplementedError(msg)
@@ -76,11 +77,11 @@ class ComicScrapper:
         while True:
             if not self.url:
                 break
-            page = self.get_page()
-            if page is None:
+            self.html_page = self.get_page()
+            if self.html_page is None:
                 break
-            img_url = self.get_comic_img_url(page)
-            self.image_name = self.get_image_name(page)
+            img_url = self.get_comic_img_url()
+            self.image_name = self.get_image_name()
             image_name = self.download_image(img_url)
             self.record(self.url)
             if verbose_level == 0:
@@ -89,7 +90,7 @@ class ComicScrapper:
                 print(self.url)
             elif verbose_level == 2:
                 print('{} {}'.format(self.url, image_name))
-            self.url = self.get_next_page(page)
+            self.url = self.get_next_page()
             self.index += 1
         print()
         print('Done, result saved in {}'.format(self.directory))

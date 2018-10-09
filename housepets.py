@@ -6,12 +6,11 @@ from core import ComicScrapper
 
 
 class Housepets(ComicScrapper):
-    def get_comic_img_url(self, html_page):
+    def get_comic_img_url(self):
         """Get url of comic image
-        :param html_page: string html page of the comic
         :return: URL of the comic image
         """
-        soup = BeautifulSoup(html_page, 'html.parser')
+        soup = BeautifulSoup(self.html_page, 'html.parser')
         comic_url = (
                 soup.find('div', attrs={'id': 'comic'})
                 .find('img')
@@ -19,12 +18,12 @@ class Housepets(ComicScrapper):
             )
         return comic_url
 
-    def get_next_page(self, html_page):
+    def get_next_page(self):
         """Get next comic page
         :param html_page: string html page of the comic
         :return: URL of next comic page
         """
-        soup = BeautifulSoup(html_page, 'html.parser')
+        soup = BeautifulSoup(self.html_page, 'html.parser')
         next_page = (
                 soup.find('table', attrs={'class': 'comic_navi'})
                 .find('a', attrs={'class': 'navi-next'})
