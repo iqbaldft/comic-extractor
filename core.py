@@ -7,8 +7,9 @@ import requests
 
 
 class ComicScrapper:
-    def __init__(self, url, directory_name, record_file='records.txt'):
+    def __init__(self, url, directory_name, record_file='records.txt', base_url=None):
         self.url = url
+        self.base_url = base_url or url
         self.directory = 'downloads/{}'.format(directory_name.strip())
         self.index = 1
         self.record_file = record_file
