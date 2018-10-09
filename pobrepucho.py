@@ -21,7 +21,7 @@ class PobrePucho(ComicScrapper):
                 .find('a', attrs={'rel': 'next'})
             )
         next_url = '{}{}'.format(self.base_url, next_page.get('href'))
-        if next_page != self.url:
+        if next_url != self.url:
             return next_url
         else:
             return None
