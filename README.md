@@ -32,19 +32,25 @@ if using virtualenv, make sure you already activate the virtualenv
 source .venv/bin/activate
 ```
 
-for extracting from housepets comic, 
+for extracting from Housepets comic, 
 ```
 python housepets.py
 ```
 
+for extracting from Foxy Flavored Cookie comic,
+```
+python pobrepucho.py
+```
+
 ## Need support for another comic ?
 Why not develop your own function ?  
-You need to extend `ComicScrapper` class from `core.py` and implement the `get_next_page` and `get_comic_img_url` function.  
-Both function took one argument, which is basically html page in text (string) form.  
+You need to extend `ComicScrapper` class from `core.py` and implement the `get_next_page` and `get_comic_img_url` function. 
 `get_next_page` function need to return string of next page url (example : "http://next.page/url/next") or `None` if there is no next page  
 `get_comic_img_url` function have to return string comic image url of the param page (example : "http://this.page/url/image.png").  
 After all that, instantiate your class (need at least `url` param for first page of the comics, and `directory_name` param for downloaded directory name), and call run() method to start extracting.  
 Downloaded files will be in `download` folder in this directory.
 
 ## Changelog
+9 October 2018
+- extract from [Foxy Flavored Cookie](http://www.pobrepucho.thecomicseries.com) comic
 - extract from [Housepets!](http://www.housepetscomic.com) comic
