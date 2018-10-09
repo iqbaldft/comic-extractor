@@ -71,6 +71,7 @@ class ComicScrapper:
             current_record = self.check_record()
             if current_record is not None:
                 self.index = current_record['index']+1
+                self.url = current_record['url']
                 self.url = self.get_next_page(self.get_page())
         while True:
             if not self.url:
