@@ -46,4 +46,4 @@ if __name__ == '__main__':
         directory_name='pobrepucho',
         base_url='http://www.pobrepucho.thecomicseries.com'
     )
-    comic.run(verbose_level=1)
+    comic.run()

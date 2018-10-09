@@ -65,31 +65,36 @@ class ComicScrapper:
     def run(
             self,
             cont=True,
-            verbose_level=0):
+            verbose=0):
         if not os.path.exists(self.directory):
                 os.mkdir(self.directory)
         if cont:
             current_record = self.check_record()
             if current_record is not None:
+                if verbose == 2:
+                    print('Records file found. Attempt to continue from last extraction...')
                 self.index = current_record['index']+1
                 self.url = current_record['url']
-                self.url = self.get_next_page(self.get_page())
+                self.html_page = self.get_page()
+                self.url = self.get_next_page()
         while True:
             if not self.url:
                 break
             self.html_page = self.get_page()
             if self.html_page is None:
                 break
+            if verbose == 2:
+                print('Downloading from {}'.format(self.url))
             img_url = self.get_comic_img_url()
             self.image_name = self.get_image_name()
             image_name = self.download_image(img_url)
             self.record(self.url)
-            if verbose_level == 0:
-                print('.', end='')
-            elif verbose_level == 1:
+            if verbose == 0:
+                print('.', end='', flush=True)
+            elif verbose == 1:
                 print(self.url)
-            elif verbose_level == 2:
-                print('{} {}'.format(self.url, image_name))
+            elif verbose == 2:
+                print('Saved as {}'.format(image_name))
             self.url = self.get_next_page()
             self.index += 1
         print()
