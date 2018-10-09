@@ -7,12 +7,13 @@ import requests
 
 
 class ComicScrapper:
-    def __init__(self, url, directory_name, record_file='records.txt', base_url=None):
+    def __init__(self, url, directory_name, record_file='records.txt', base_url=None, image_name=None):
         self.url = url
         self.base_url = base_url or url
         self.directory = 'downloads/{}'.format(directory_name.strip())
         self.index = 1
         self.record_file = record_file
+        self.image_name = None
 
     def get_page(self):
         """Get page contents from a url
@@ -21,10 +22,13 @@ class ComicScrapper:
         page = requests.get(self.url)
         return page.text if page.status_code == 200 else None
 
+    def get_image_name(self, html_page):
+        return
+
     def download_image(self, image_url):
         """Download image from url
         """
-        filename = image_url.split('/')[-1]
+        filename = self.image_name or image_url.split('/')[-1]
         filename = '{}-{}'.format(self.index, filename)
         full_path = '{}/{}'.format(self.directory, filename)
         urlretrieve(image_url, full_path)
@@ -75,6 +79,7 @@ class ComicScrapper:
             if page is None:
                 break
             img_url = self.get_comic_img_url(page)
+            self.image_name = self.get_image_name(page)
             image_name = self.download_image(img_url)
             self.record(self.url)
             if verbose_level == 0:
