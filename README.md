@@ -42,6 +42,11 @@ for extracting from Foxy Flavored Cookie comic,
 python pobrepucho.py
 ```
 
+for extracting from Cave and Critters comic (18+),
+```
+python pobrepucho.py
+```
+
 ## Need support for another comic ?
 Why not develop your own function ?  
 You need to extend `ComicScrapper` class from `core.py` and implement the `get_next_page` and `get_comic_img_url` function. 
@@ -51,6 +56,9 @@ After all that, instantiate your class (need at least `url` param for first page
 Downloaded files will be in `download` folder in this directory.
 
 ## Changelog
+11 October 2018
+- extract from [Caves and Critters](http://cavesandcritters.com) comic
+
 9 October 2018
 - extract from [Foxy Flavored Cookie](http://www.pobrepucho.thecomicseries.com) comic
 - extract from [Housepets!](http://www.housepetscomic.com) comic
