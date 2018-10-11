@@ -39,4 +39,4 @@ if __name__ == '__main__':
         url='http://cavesandcritters.com/cnc_webcomic/01_000/',
         directory_name='cavesandcritters'
     )
-    comic.run(verbose=2)
+    comic.run(verbose=1)

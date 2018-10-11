@@ -37,4 +37,4 @@ if __name__ == '__main__':
         url='http://www.housepetscomic.com/comic/2008/06/02/when-boredom-strikes/',
         directory_name='housepets'
     )
-    comic.run()
+    comic.run(verbose=1)
